@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Accordian from './Accordian';
 
-function App() {
+const App = () => {
+
+  const [visibleId, setVisibleId] = useState(null);
+  const [input, setInput] = useState(false);
+
+  const handleVisibility = (id) => {
+    if (visibleId === id) {
+      setVisibleId(null)
+    } else {
+      setVisibleId(id)
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Accordians</h1>
+      <h3>Is multiple open accordion allowed?
+        <input type="checkbox" checked={input} onClick={() => setInput(!input)}/>
+      </h3>
+      <Accordian visibleId={visibleId} handleVisibility={handleVisibility}/>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
